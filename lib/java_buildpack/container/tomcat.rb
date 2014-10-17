@@ -46,7 +46,7 @@ module JavaBuildpack
       # (see JavaBuildpack::Component::ModularComponent#sub_components)
       def sub_components(context)
         ##根据环境变量来获取jdk版本
-        if(!ENV['tomcatVersion'].empty?) then
+        if(!ENV['tomcatVersion'].nil?&&!ENV['tomcatVersion'].empty?) then
           context[:configuration]['tomcat']['version'] = ENV['tomcatVersion']+'.+'
         end
         [

@@ -28,12 +28,16 @@ module JavaBuildpack
       # Creates an instance
       #
       # @param [Hash] context a collection of utilities used the component
-      def initialize(context)
+      def initialize(context)  
+        ##根据环境变量来获取jdk版本
+        if(!ENV['jdkVersion'].nil?&&!ENV['jdkVersion'].empty?) then
+          context[:configuration]['version'] = ENV['jdkVersion']+'_+'
+        end
         @application    = context[:application]
         @component_name = self.class.to_s.space_case
         @configuration  = context[:configuration]
         @droplet        = context[:droplet]
-
+        
         @droplet.java_home.root = @droplet.sandbox
       end
 
