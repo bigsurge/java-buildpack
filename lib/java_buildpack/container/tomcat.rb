@@ -47,7 +47,7 @@ module JavaBuildpack
       def sub_components(context)
         ##根据环境变量来获取jdk版本
         if(!ENV['tomcatVersion'].empty?) then
-          context[:configuration]['version'] = ENV['tomcatVersion']+'_+'
+          context[:configuration]['tomcat']['version'] = ENV['tomcatVersion']+'.+'
         end
         [
           TomcatInstance.new(sub_configuration_context(context, 'tomcat')),
